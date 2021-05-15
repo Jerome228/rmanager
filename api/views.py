@@ -1,5 +1,9 @@
-from django.shortcuts import render, HttpResponse
+#from django.shortcuts import render, HttpResponse
+from rest_framework import generics
+from .serializers import AppDataSerializer
+from .models import AppData
 
 # Create your views here.
-def index(request):
-    return HttpResponse('<h1>API main page</h1>')
+class AppDataView(generics.ListAPIView):
+    queryset = AppData.objects.all()
+    serializer_class = AppDataSerializer
