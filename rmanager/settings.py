@@ -38,12 +38,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rmanager',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
     'api',
     'rest_framework',
 ]
@@ -134,3 +136,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 USER_PSWD = str(os.getenv('VMPSWD'))
+
+CELERY_RESULT_BACKEND = str(os.getenv('CELERY_BROKER_URL', 'db+sqlite:///results.sqlite3'))
+CELERY_BROKER_URL = str(os.getenv('CELERY_BROKER_URL'))
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Paris'
