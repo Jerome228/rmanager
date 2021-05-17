@@ -1,6 +1,7 @@
 import paramiko
 from django.conf import settings
 
+
 def remoteActions(app):
     cmd = """
     if [ -f ~/script.sh ]
@@ -19,4 +20,4 @@ def remoteActions(app):
         print(line)
         out.append(line)
     client.close()
-    return out 
+    return out

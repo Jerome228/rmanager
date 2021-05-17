@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import string
-import random 
+import random
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -30,7 +30,7 @@ sKey = ''.join([random.choice(string.printable) for i in range(66)])
 SECRET_KEY = str(os.getenv('SECRET_KEY', sKey))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -136,10 +136,8 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 USER_PSWD = str(os.getenv('VMPSWD'))
-
-CELERY_RESULT_BACKEND = str(os.getenv('CELERY_BROKER_URL', 'db+sqlite:///results.sqlite3'))
 CELERY_BROKER_URL = str(os.getenv('CELERY_BROKER_URL'))
-
+CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

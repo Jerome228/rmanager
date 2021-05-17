@@ -1,5 +1,4 @@
 from django.test import TestCase
-from api.views import index
 
 
 class apiTestViews(TestCase):
