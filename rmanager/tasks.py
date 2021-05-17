@@ -1,6 +1,7 @@
 # Create your tasks here
 from __future__ import absolute_import, unicode_literals
 from django.conf import settings
+import paramiko
 from time import sleep
 from celery import shared_task
 from celery.utils.log import get_task_logger
