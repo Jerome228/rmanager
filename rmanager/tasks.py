@@ -5,7 +5,6 @@ import paramiko
 import ansiconv
 from time import sleep
 from celery import shared_task
-from celery_progress.backend import ProgressRecorder
 from celery.utils.log import get_task_logger
 from api.models import AppData
 
@@ -13,7 +12,6 @@ logger = get_task_logger(__name__)
 
 @shared_task(bind=True)
 def c_runCommands(self):
-    progress_recorder = ProgressRecorder(self)
     cmd = """
     if [ -f ~/script.sh ]
     then
