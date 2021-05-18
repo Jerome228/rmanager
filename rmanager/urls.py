@@ -21,7 +21,6 @@ from .views import remoteTask, home, getTaskUpdate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('celery-progress/', include('celery_progress.urls')),
     path('', home, name='home'),
     path('runner/', remoteTask, name='runner'),
     path('get-task-update/<str:t_id>', getTaskUpdate, name='update'),
