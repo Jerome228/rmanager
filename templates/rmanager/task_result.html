@@ -1,31 +1,14 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block title %}Home{% endblock title %}
+{% block title %}Task Results{% endblock title %}
 {% block content %}
 <h3>Task Results</h3>
-    <div id="beforeRefresh" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="beforeRefreshLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Warning</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <p>Are you sure ?</p>
-        </div>
-        <div class="modal-footer">
-            <button id="cancel_refresh" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button id="refresh" type="button" class="btn btn-primary">Refresh</button>
-        </div>
-        </div>
-    </div>
-    </div>
+<p>Task ID: {{ taskid }}</p>
     <div id="taskinfo" data-updateurl={% if taskid %}"{{ request.scheme }}://{{ request.get_host }}{% url 'update' taskid %}"{% else %}""{% endif %}>
     </div>
     <div id="terminalwrapper">
-    <p id="status" class="alert alert-light"><i class="far fa-clock"></i> Waiting for output ...</p>
+    <div id="status" class="alert alert-light"><i class="far fa-clock"></i> Waiting for output ...</div>
     <div id="terminal">
-    </div
     </div>
 {% endblock content %}
 {% block scripts %}

@@ -38,9 +38,12 @@ $(document).ready(function() {
             success: function (response) {                
                 if (response.line) {
                     if (!(out.includes(response.line.iter))) {
-                        status.html('<i class="fas fa-cogs"></i> ' + response.state) 
-                        status.removeClass()
-                        status.addClass('alert alert-warning')
+                        //status.html('<i class="fas fa-cogs"></i> ' + response.state) 
+                        status.html(`<div class="spinner-border text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>`) 
+                        // status.removeClass()
+                        // status.addClass('alert alert-warning')
                         term.html(response.line.line)
                         out.push(response.line.iter)
                     }             

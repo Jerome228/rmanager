@@ -6,7 +6,7 @@
 <form action="{% url 'luncher' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" value="Submit" class="btn btn-dark"><i class="fas fa-fighter-jet"></i> Run</button>
+    <button type="submit" value="Submit" class="btn btn-dark"><i class="fas fa-tasks"></i> Submit</button>
 </form>
 {% endblock content %}
 
