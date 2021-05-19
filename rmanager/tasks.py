@@ -2,24 +2,22 @@
 from django.conf import settings
 from django.utils.html import escape
 import paramiko
-import ansiconv
+from ansi2html import Ansi2HTMLConverter
 from time import sleep
 from celery import shared_task
 from celery.utils.log import get_task_logger
-from api.models import AppData
 
 logger = get_task_logger(__name__)
 
+
 @shared_task(bind=True)
-def c_runCommands(self):
+def c_runCommands(self, srv):
     cmd = """
     if [ -f ~/script.sh ]
     then
         ~/script.sh
     fi
     """
-    app = AppData.objects.first()
-    srv = app.hservers
     out = []
     psw = settings.USER_PSWD
     client = paramiko.SSHClient()
@@ -29,7 +27,7 @@ def c_runCommands(self):
     i = 0
     for line in iter(stdout.readline, ""):
         i += 1
-        out.append(line.replace('\r', ''))
+        out.append(line)
         txt2html = convert2html(out)
         self.update_state(state='PROGRESS', meta={'line': txt2html, 'iter': i})
     client.close()
@@ -42,14 +40,6 @@ def c_goToSleep(self, sec):
 
 
 def convert2html(output):
-    txt = ansiconv.to_plain('\n'.join(output))
-    html = ansiconv.to_html(txt)
-    css = ansiconv.base_css()
-    return """
-            <html>
-            <head><style>{0}</style></head>
-            <body>
-            <pre class="ansi_fore ansi_back">{1}</pre>
-            </body>
-            </html>
-            """.format(css, escape(html))
+    conv = Ansi2HTMLConverter()
+    ansi = ''.join(output)
+    return conv.convert(ansi)

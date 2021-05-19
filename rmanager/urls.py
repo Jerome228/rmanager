@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
-from .views import remoteTask, home, getTaskUpdate
+from .views import remoteTask, home, getTaskUpdate, taskResult, lunchTask
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('runner/', remoteTask, name='runner'),
-    path('get-task-update/<str:t_id>', getTaskUpdate, name='update'),
+    path('luncher/', lunchTask, name='luncher'),
+    path('get-task-update/<str:task_id>/', getTaskUpdate, name='update'),
+    path('task/<str:task_id>/', taskResult, name='task-result'),
     path('api/', include('api.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

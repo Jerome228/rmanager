@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
+
+    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Fontawesome Free -->
+    <link href="{% static 'fontawesome_free5/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap5/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+
+    <!-- Custum stylesheets -->
+    <link rel="stylesheet" href="{% static 'rmanager/css/update_task_status.css' %}">
+    {% block styles %}{% endblock styles %}
 </head>
 <body>
-<div class="container">
+{% block navbar %}
+<div class="mynavbar">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="{% url 'luncher' %}"><i class="fas fa-rocket"></i> Lunch a Task</a>
+        <a class="nav-link" href="{% url 'api:home' %}" target="_blank"><i class="fas fa-code"></i> Api</a>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+{% endblock navbar %}
+<div class="container-fluid">
+  <div>
+    {% if messages %}
+      <ul class="messages list-group">
+        {% for message in messages %}
+          <li{% if message.tags %} class="list-group-item list-group-item-{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+<div>
     {% block content %}Content to be overwritten.{% endblock content %}
 </div>
+</div>
+<!-- Custum stylesheets -->
 {% block scripts %}{% endblock scripts %}
 </body>
 </html>

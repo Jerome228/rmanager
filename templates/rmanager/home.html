@@ -2,22 +2,7 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<h1>Home Page</h1>
-    <a href="{% url 'runner' %}">Run a Task !</a>
-    <div>
-        {% if messages %}
-            <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-    <div id="taskinfo" data-updateurl={% if task %}"{{ request.scheme }}://{{ request.get_host }}{% url 'update' task.task_id %}"{% else %}""{% endif %}>
-    </div>
-    <div id="terminal">
-    </div>
+<h3>Home Page</h3>
+Welcome
 {% endblock content %}
-{% block scripts %}
-<script src="{% static 'rmanager/update_task_status.js' %}"></script>
-{% endblock scripts %}
+

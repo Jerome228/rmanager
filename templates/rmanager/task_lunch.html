@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Lunch a Task{% endblock title %}
+{% block content %}
+<h3>Lunch a Task</h3>
+<form action="{% url 'luncher' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" value="Submit" class="btn btn-dark"><i class="fas fa-fighter-jet"></i> Run</button>
+</form>
+{% endblock content %}
+

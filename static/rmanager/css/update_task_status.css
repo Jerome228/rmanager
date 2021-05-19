@@ -1,0 +1,19 @@
+#terminal {
+    border-radius: .3rem;
+    margin-top: 1rem;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+.messages {
+    margin-top: 1rem;
+}
+
+.mynavbar {
+    font-size: larger !important;
+    font-weight: bolder !important;
+    margin-bottom: 1rem !important;
+    background: rgba(0,0,0,0.1) !important;
+}
