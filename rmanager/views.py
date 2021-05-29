@@ -22,7 +22,7 @@ def remoteTask(request):
             raise Exception(f'No {task_data["trg"]} App found.')
         srv = queryset.hservers        
         task = c_runCommands.delay(srv)
-        messages.add_message(request, messages.INFO, "Job submitted. The output from the tast is retrieved in real time, no need to refresh this page.")
+        messages.add_message(request, messages.INFO, "Job submitted. The output from the task is retrieved in real time, no need to refresh this page.")
         return redirect(reverse('task-result', args=[task.id]))
     except Exception as e:
         messages.add_message(request, messages.WARNING, f"Job cannot be submitted: {e}")
