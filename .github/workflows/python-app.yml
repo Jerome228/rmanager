@@ -40,4 +40,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
       with:
-        args: MyReleaseMessage
+        args: v1.0
